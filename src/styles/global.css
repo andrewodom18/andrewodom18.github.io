@@ -258,20 +258,7 @@ p {
   display: inline-flex;
   width: fit-content;
   align-items: center;
-  gap: 0.75rem;
   text-decoration: none;
-}
-
-.brand__mark {
-  display: grid;
-  width: 2.65rem;
-  aspect-ratio: 1;
-  place-items: center;
-  background: linear-gradient(135deg, var(--cobalt-dark), #bd347f);
-  color: var(--white);
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  font-weight: 800;
 }
 
 .brand__text {
@@ -1908,10 +1895,6 @@ p {
 
   body {
     background-size: 24px 24px;
-  }
-
-  .brand__text span {
-    display: none;
   }
 
   .hero {

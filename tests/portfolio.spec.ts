@@ -37,6 +37,11 @@ test.describe("public portfolio", () => {
     await expect(page.getByText("Store Template")).toHaveCount(0);
     await expect(page.getByText("aodom.dev", { exact: true })).toHaveCount(0);
 
+    const headerBrand = page.getByRole("banner").getByRole("link", { name: /Andrew Odom/i });
+    await expect(headerBrand).toContainText("Andrew Odom");
+    await expect(headerBrand).toContainText("Software developer");
+    await expect(headerBrand.locator("img, .brand__mark")).toHaveCount(0);
+
     const navigationText = await page
       .getByRole("navigation", { name: "Primary navigation" })
       .innerText();

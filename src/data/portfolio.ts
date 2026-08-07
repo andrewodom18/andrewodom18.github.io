@@ -6,7 +6,6 @@ export interface LinkItem {
 export const portfolioContent = {
   site: {
     name: "Andrew Odom",
-    shortName: "AO",
     url: "https://aodom.dev",
     title: "Andrew Odom | Software Developer",
     description:
