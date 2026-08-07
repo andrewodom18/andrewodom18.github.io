@@ -1,0 +1,39 @@
+---
+import { portfolioContent } from "../data/portfolio";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+const normalizePath = (value: string) => (value.endsWith("/") ? value : `${value}/`);
+const isCurrent = (href: string) => {
+  if (href.includes("#")) return false;
+  if (href === "/work/") return normalizePath(currentPath).startsWith("/work/");
+  return normalizePath(currentPath) === normalizePath(href);
+};
+---
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true">{portfolioContent.site.shortName}</span>
+      <span class="brand__text">
+        <strong>{portfolioContent.site.name}</strong>
+        <span>Software engineer</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      {
+        portfolioContent.navigation.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a class="header-contact" href="/#contact">Contact</a>
+  </div>
+</header>

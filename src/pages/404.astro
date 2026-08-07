@@ -1,0 +1,26 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page Not Found | Andrew Odom"
+  description="The requested page could not be found."
+  canonicalPath="/404.html"
+  noIndex
+>
+  <SiteHeader />
+  <main id="main" class="not-found">
+    <div class="shell not-found__inner">
+      <p class="eyebrow">404 · Page not found</p>
+      <h1>The requested page is unavailable.</h1>
+      <p>The page may have moved or no longer exists.</p>
+      <div class="button-row">
+        <a class="button button--primary" href="/">Return home</a>
+        <a class="text-link" href="/resume/">View resume <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>

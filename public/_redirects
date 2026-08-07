@@ -1,0 +1,9 @@
+/contact /#contact 301
+/contact/ /#contact 301
+/docs /work/ 301
+/docs/ /work/ 301
+/docs/* /work/ 301
+/work/store-template /work/ 301
+/work/store-template/ /work/ 301
+/work/aodom-dev /work/ 301
+/work/aodom-dev/ /work/ 301

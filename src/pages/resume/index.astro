@@ -1,0 +1,101 @@
+---
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import { portfolioContent } from "../../data/portfolio";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title={`Resume | ${portfolioContent.site.name}`}
+  description="Web and print resume for Andrew Odom, a software developer with web and mobile experience."
+  canonicalPath="/resume/"
+>
+  <div class="resume-site-header">
+    <SiteHeader currentPath="/resume/" />
+  </div>
+
+  <main id="main" class="resume-page">
+    <article class="resume-document">
+      <header class="resume-header">
+        <div>
+          <p class="eyebrow">Software Developer</p>
+          <h1>{portfolioContent.site.name}</h1>
+          <p class="resume-header__summary">
+            Software developer at Air Force BESPIN with experience across web, mobile,
+            data, testing, and delivery automation.
+          </p>
+        </div>
+        <address>
+          <a href={`mailto:${portfolioContent.site.email}`}>{portfolioContent.site.email}</a>
+          <a href={portfolioContent.site.url}>aodom.dev</a>
+          <a href="https://github.com/andrewodom18">github.com/andrewodom18</a>
+          <a href="https://linkedin.com/in/andrewodom18/">linkedin.com/in/andrewodom18</a>
+        </address>
+      </header>
+
+      <div class="resume-actions" aria-label="Resume actions">
+        <button class="button button--primary" type="button" data-print>
+          Print / save as PDF
+        </button>
+        <a
+          class="text-link"
+          href="https://github.com/andrewodom18"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View GitHub profile <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <section class="resume-section" aria-labelledby="resume-experience-title">
+        <h2 id="resume-experience-title">Experience</h2>
+        <article class="resume-role">
+          <div class="resume-role__heading">
+            <div>
+              <h3>{portfolioContent.experience.role}</h3>
+              <p>{portfolioContent.experience.organization}</p>
+            </div>
+            <span>{portfolioContent.experience.dates}</span>
+          </div>
+          <p>{portfolioContent.experience.summary}</p>
+          <ul>
+            {portfolioContent.experience.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+        </article>
+      </section>
+
+      <section class="resume-section" aria-labelledby="resume-skills-title">
+        <h2 id="resume-skills-title">Technical skills</h2>
+        <div class="resume-skills">
+          {
+            portfolioContent.skills.map((area) => (
+              <article>
+                <h3>{area.title}</h3>
+                <p>{area.tools.join(", ")}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="resume-section" aria-labelledby="resume-education-title">
+        <h2 id="resume-education-title">Education</h2>
+        <div class="resume-education">
+          {
+            portfolioContent.education.map((item) => (
+              <article>
+                <span>{item.status}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <div class="resume-site-footer">
+    <SiteFooter />
+  </div>
+</BaseLayout>

@@ -1,0 +1,89 @@
+---
+import "../styles/global.css";
+import { portfolioContent } from "../data/portfolio";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title = portfolioContent.site.title,
+  description = portfolioContent.site.description,
+  canonicalPath = Astro.url.pathname,
+  noIndex = false
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, portfolioContent.site.url).toString();
+const socialImageUrl = new URL(
+  "/assets/andrew-odom-profile.png?v=2026-08-06",
+  portfolioContent.site.url
+).toString();
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: portfolioContent.site.name,
+    url: portfolioContent.site.url,
+    email: `mailto:${portfolioContent.site.email}`,
+    jobTitle: "Software Developer",
+    worksFor: {
+      "@type": "Organization",
+      name: "Air Force BESPIN"
+    },
+    sameAs: portfolioContent.social
+      .filter((item) => item.href.startsWith("http"))
+      .map((item) => item.href)
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: portfolioContent.site.name,
+    url: portfolioContent.site.url,
+    description: portfolioContent.site.description
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <meta name="theme-color" content="#020916" />
+    <meta name="color-scheme" content="dark" />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={portfolioContent.site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta
+      property="og:image:alt"
+      content="Andrew Odom — Software Developer at Air Force BESPIN; web and mobile applications."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+    <script is:inline defer src="/assets/js/site.js"></script>
+  </body>
+</html>

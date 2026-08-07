@@ -1,0 +1,25 @@
+---
+import { portfolioContent } from "../data/portfolio";
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <a class="site-footer__name" href="/">{portfolioContent.site.name}</a>
+      <p>Web and mobile software developer.</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      {
+        portfolioContent.social.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>

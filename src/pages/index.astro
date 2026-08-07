@@ -1,0 +1,163 @@
+---
+import ContactBand from "../components/ContactBand.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { portfolioContent } from "../data/portfolio";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <SiteHeader currentPath="/" />
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell">
+        <p class="eyebrow hero__eyebrow">{portfolioContent.hero.eyebrow}</p>
+        <div class="hero__grid">
+          <h1 id="hero-title">
+            {portfolioContent.hero.title}
+            <em>{portfolioContent.hero.titleEmphasis}</em>
+          </h1>
+          <div class="hero__side" data-reveal>
+            <figure class="hero__portrait">
+              <img
+                src="/assets/andrew-odom-profile.png"
+                alt="Andrew Odom AO monogram in blue and magenta"
+                width="1024"
+                height="1024"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </figure>
+            <div class="hero__intro">
+              <p>{portfolioContent.hero.summary}</p>
+              <div class="button-row">
+                <a class="button button--primary" href={portfolioContent.hero.primaryAction.href}>
+                  {portfolioContent.hero.primaryAction.label}
+                </a>
+                <a class="text-link" href={portfolioContent.hero.secondaryAction.href}>
+                  {portfolioContent.hero.secondaryAction.label}
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </div>
+              <div class="hero__socials" aria-label="Professional profiles">
+                {
+                  portfolioContent.social.slice(0, 2).map((link) => (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      {link.label} <span aria-hidden="true">↗</span>
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <dl class="hero-profile" data-reveal aria-label="Professional profile">
+          {
+            portfolioContent.hero.profile.map((item) => (
+              <div>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="shell about__grid">
+        <div data-reveal>
+          <p class="eyebrow">{portfolioContent.about.eyebrow}</p>
+          <h2 id="about-title">{portfolioContent.about.title}</h2>
+          <p class="about__status"><span aria-hidden="true"></span>{portfolioContent.about.status}</p>
+        </div>
+        <div class="about__copy" data-reveal>
+          {portfolioContent.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section experience" id="experience" aria-labelledby="experience-title">
+      <div class="shell experience__grid">
+        <div data-reveal>
+          <p class="eyebrow">{portfolioContent.experience.eyebrow}</p>
+          <h2 id="experience-title">{portfolioContent.experience.title}</h2>
+        </div>
+
+        <article class="experience-card" data-reveal>
+          <div class="experience-card__heading">
+            <div>
+              <p>{portfolioContent.experience.role}</p>
+              <h3>{portfolioContent.experience.organization}</h3>
+            </div>
+            <span>{portfolioContent.experience.dates}</span>
+          </div>
+          <p class="experience-card__summary">{portfolioContent.experience.summary}</p>
+          <ul>
+            {portfolioContent.experience.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section education" id="education" aria-labelledby="education-title">
+      <div class="shell">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="eyebrow">Education</p>
+            <h2 id="education-title">Current and planned study.</h2>
+          </div>
+        </div>
+        <div class="education-grid">
+          {
+            portfolioContent.education.map((item) => (
+              <article class="education-card" data-reveal>
+                <span>{item.status}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section expertise" id="skills" aria-labelledby="skills-title">
+      <div class="shell">
+        <div class="section-heading section-heading--stacked" data-reveal>
+          <p class="eyebrow">Skills</p>
+          <h2 id="skills-title">Technical stack.</h2>
+        </div>
+
+        <div class="expertise-list">
+          {
+            portfolioContent.skills.map((area) => (
+              <article data-reveal>
+                <span class="expertise-list__number">{area.number}</span>
+                <h3>{area.title}</h3>
+                <ul aria-label={`${area.title} technologies`}>
+                  {area.tools.map((tool) => <li>{tool}</li>)}
+                </ul>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section work-preview" id="work" aria-labelledby="work-title">
+      <div class="shell">
+        <div class="work-placeholder" data-reveal>
+          <p class="eyebrow">Selected work</p>
+          <h2 id="work-title">TBD</h2>
+        </div>
+      </div>
+    </section>
+
+    <ContactBand />
+  </main>
+
+  <SiteFooter />
+</BaseLayout>

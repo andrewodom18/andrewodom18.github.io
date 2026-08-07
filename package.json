@@ -1,0 +1,31 @@
+{
+  "name": "aodom-dev",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "check": "astro check",
+    "preview": "astro preview",
+    "test": "npm run build && playwright test",
+    "test:smoke": "playwright test",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.6",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.62.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.116.0"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=9.6.5"
+  }
+}

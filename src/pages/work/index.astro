@@ -1,0 +1,30 @@
+---
+import ContactBand from "../../components/ContactBand.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import { portfolioContent } from "../../data/portfolio";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title={`Work | ${portfolioContent.site.name}`}
+  description="Public work from Andrew Odom will be added when it is ready."
+  canonicalPath="/work/"
+>
+  <SiteHeader currentPath="/work/" />
+
+  <main id="main">
+    <header class="page-hero">
+      <div class="shell page-hero__grid page-hero__grid--single">
+        <div>
+          <p class="eyebrow">Selected work</p>
+          <h1>TBD</h1>
+        </div>
+      </div>
+    </header>
+
+    <ContactBand />
+  </main>
+
+  <SiteFooter />
+</BaseLayout>

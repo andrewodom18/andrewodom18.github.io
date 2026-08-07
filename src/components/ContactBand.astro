@@ -1,0 +1,37 @@
+---
+import { portfolioContent } from "../data/portfolio";
+---
+
+<section class="contact-band" id="contact" aria-labelledby="contact-title">
+  <div class="contact-band__inner" data-reveal>
+    <p class="eyebrow eyebrow--light">{portfolioContent.contact.eyebrow}</p>
+    <div class="contact-band__grid">
+      <h2 id="contact-title">{portfolioContent.contact.title}</h2>
+      <div>
+        <p>{portfolioContent.contact.text}</p>
+        <a class="contact-band__email" href={`mailto:${portfolioContent.site.email}`}>
+          {portfolioContent.site.email}
+        </a>
+        <div class="contact-band__actions">
+          <button
+            class="button button--light"
+            type="button"
+            data-copy-email
+            data-email={portfolioContent.site.email}
+          >
+            Copy email
+          </button>
+          <a
+            class="text-link text-link--light"
+            href="https://linkedin.com/in/andrewodom18/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Connect on LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <span class="contact-band__status" role="status" aria-live="polite" data-copy-status></span>
+      </div>
+    </div>
+  </div>
+</section>
