@@ -1,4 +1,4 @@
-export interface LinkItem {
+interface LinkItem {
   label: string;
   href: string;
 }
@@ -100,5 +100,3 @@ export const portfolioContent = {
     emailSubject: "Software engineering opportunity"
   }
 } as const;
-
-export type PortfolioContent = typeof portfolioContent;
