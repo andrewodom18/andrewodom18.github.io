@@ -70,14 +70,30 @@ test.describe("public portfolio", () => {
       "href",
       "mailto:contact@aodom.dev?subject=Software%20engineering%20opportunity"
     );
-    await expect(page.getByRole("link", { name: "Email Andrew" })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "Open email app" })).toHaveAttribute(
       "href",
       "mailto:contact@aodom.dev?subject=Software%20engineering%20opportunity"
     );
 
-    await page.getByRole("button", { name: "Copy address" }).click();
+    await page.getByRole("button", { name: "Copy email address" }).click();
     await expect(page.getByRole("button", { name: "Email copied" })).toBeVisible();
     await expect(page.getByRole("status")).toContainText("contact@aodom.dev");
+  });
+
+  test("copy action provides a Mac fallback when clipboard access is unavailable", async ({
+    page
+  }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, "clipboard", {
+        configurable: true,
+        value: { writeText: async () => Promise.reject(new Error("Clipboard unavailable")) }
+      });
+    });
+    await page.goto("/");
+
+    await page.getByRole("button", { name: "Copy email address" }).click();
+    await expect(page.getByRole("button", { name: "Email selected" })).toBeVisible();
+    await expect(page.getByRole("status")).toContainText("Press Command+C");
   });
 
   test("legacy docs routes redirect to selected work", async ({ page }) => {

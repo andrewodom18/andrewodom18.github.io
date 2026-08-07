@@ -100,7 +100,7 @@ export const portfolioContent = {
     title: "Start a conversation.",
     text: "For software engineering roles and professional inquiries, email is the best way to reach me.",
     emailSubject: "Software engineering opportunity",
-    emailNote: "Your message goes directly to my professional inbox."
+    emailNote: "Copy the address and paste it into your preferred email service."
   }
 } as const;
 

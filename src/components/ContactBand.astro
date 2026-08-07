@@ -16,22 +16,22 @@ const emailHref = `mailto:${portfolioContent.site.email}?subject=${encodeURIComp
       </div>
       <div class="contact-band__panel" aria-label="Contact options">
         <p class="contact-band__label">Email</p>
-        <a class="contact-band__email" href={emailHref}>
+        <a class="contact-band__email" href={emailHref} data-email-address>
           {portfolioContent.site.email}
         </a>
         <p class="contact-band__note">{portfolioContent.contact.emailNote}</p>
         <div class="contact-band__actions">
-          <a class="button button--light" href={emailHref}>
-            Email Andrew <span aria-hidden="true">↗</span>
-          </a>
           <button
-            class="button button--contact-outline"
+            class="button button--light"
             type="button"
             data-copy-email
             data-email={portfolioContent.site.email}
           >
-            Copy address
+            Copy email address
           </button>
+          <a class="button button--contact-outline" href={emailHref}>
+            Open email app <span aria-hidden="true">↗</span>
+          </a>
         </div>
         <span class="contact-band__status" role="status" aria-live="polite" data-copy-status></span>
         <div class="contact-band__secondary">
