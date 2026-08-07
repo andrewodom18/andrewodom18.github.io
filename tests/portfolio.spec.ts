@@ -58,14 +58,19 @@ test.describe("public portfolio", () => {
       .click();
     await expect(page).toHaveURL(/\/#contact$/);
     await expect(
-      page.getByRole("heading", { name: "Get in touch." })
+      page.getByRole("heading", { name: "Start a conversation." })
     ).toBeVisible();
+    await expect(page.locator("#contact form")).toHaveCount(0);
     await expect(page.getByRole("link", { name: "contact@aodom.dev" })).toHaveAttribute(
       "href",
-      "mailto:contact@aodom.dev"
+      "mailto:contact@aodom.dev?subject=Software%20engineering%20opportunity"
+    );
+    await expect(page.getByRole("link", { name: "Email Andrew" })).toHaveAttribute(
+      "href",
+      "mailto:contact@aodom.dev?subject=Software%20engineering%20opportunity"
     );
 
-    await page.getByRole("button", { name: "Copy email" }).click();
+    await page.getByRole("button", { name: "Copy address" }).click();
     await expect(page.getByRole("button", { name: "Email copied" })).toBeVisible();
     await expect(page.getByRole("status")).toContainText("contact@aodom.dev");
   });

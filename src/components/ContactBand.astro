@@ -1,36 +1,49 @@
 ---
 import { portfolioContent } from "../data/portfolio";
+
+const emailHref = `mailto:${portfolioContent.site.email}?subject=${encodeURIComponent(
+  portfolioContent.contact.emailSubject
+)}`;
 ---
 
 <section class="contact-band" id="contact" aria-labelledby="contact-title">
   <div class="contact-band__inner" data-reveal>
-    <p class="eyebrow eyebrow--light">{portfolioContent.contact.eyebrow}</p>
     <div class="contact-band__grid">
-      <h2 id="contact-title">{portfolioContent.contact.title}</h2>
-      <div>
+      <div class="contact-band__intro">
+        <p class="eyebrow eyebrow--light">{portfolioContent.contact.eyebrow}</p>
+        <h2 id="contact-title">{portfolioContent.contact.title}</h2>
         <p>{portfolioContent.contact.text}</p>
-        <a class="contact-band__email" href={`mailto:${portfolioContent.site.email}`}>
+      </div>
+      <div class="contact-band__panel" aria-label="Contact options">
+        <p class="contact-band__label">Email</p>
+        <a class="contact-band__email" href={emailHref}>
           {portfolioContent.site.email}
         </a>
+        <p class="contact-band__note">{portfolioContent.contact.emailNote}</p>
         <div class="contact-band__actions">
+          <a class="button button--light" href={emailHref}>
+            Email Andrew <span aria-hidden="true">↗</span>
+          </a>
           <button
-            class="button button--light"
+            class="button button--contact-outline"
             type="button"
             data-copy-email
             data-email={portfolioContent.site.email}
           >
-            Copy email
+            Copy address
           </button>
+        </div>
+        <span class="contact-band__status" role="status" aria-live="polite" data-copy-status></span>
+        <div class="contact-band__secondary">
+          <span>LinkedIn</span>
           <a
-            class="text-link text-link--light"
             href="https://linkedin.com/in/andrewodom18/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Connect on LinkedIn <span aria-hidden="true">↗</span>
+            View professional profile <span aria-hidden="true">↗</span>
           </a>
         </div>
-        <span class="contact-band__status" role="status" aria-live="polite" data-copy-status></span>
       </div>
     </div>
   </div>

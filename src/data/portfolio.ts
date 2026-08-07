@@ -98,8 +98,10 @@ export const portfolioContent = {
   ],
   contact: {
     eyebrow: "Contact",
-    title: "Get in touch.",
-    text: "For software engineering opportunities, email me or connect on LinkedIn."
+    title: "Start a conversation.",
+    text: "For software engineering roles and professional inquiries, email is the best way to reach me.",
+    emailSubject: "Software engineering opportunity",
+    emailNote: "Your message goes directly to my professional inbox."
   }
 } as const;
 
