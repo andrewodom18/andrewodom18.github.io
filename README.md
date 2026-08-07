@@ -1,7 +1,5 @@
 # Andrew Odom — [GitHub Page](https://andrewodom18.github.io)
 
-GitHub Pages mirror of [aodom.dev](https://aodom.dev).
-
 ## Stack
 
 - Astro static site generation
