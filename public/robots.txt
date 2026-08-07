@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aodom.dev/sitemap.xml
+Sitemap: https://andrewodom18.github.io/sitemap.xml

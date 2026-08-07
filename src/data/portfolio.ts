@@ -6,7 +6,7 @@ export interface LinkItem {
 export const portfolioContent = {
   site: {
     name: "Andrew Odom",
-    url: "https://aodom.dev",
+    url: "https://andrewodom18.github.io",
     title: "Andrew Odom | Software Developer",
     description:
       "Andrew Odom is a software developer at Air Force BESPIN building web and mobile applications.",
