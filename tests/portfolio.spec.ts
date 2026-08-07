@@ -49,13 +49,7 @@ test.describe("public portfolio", () => {
     expect(navigationText).not.toMatch(/Docs|Status|Arcade/i);
   });
 
-  test("contact link reaches a usable email action", async ({ page }) => {
-    await page.addInitScript(() => {
-      Object.defineProperty(navigator, "clipboard", {
-        configurable: true,
-        value: { writeText: async () => undefined }
-      });
-    });
+  test("contact link reaches verified contact details", async ({ page }) => {
     await page.goto("/");
 
     await page
@@ -71,30 +65,18 @@ test.describe("public portfolio", () => {
       "href",
       "mailto:contact@aodom.dev?subject=Software%20engineering%20opportunity"
     );
-    await expect(page.getByRole("link", { name: "Open email app" })).toHaveAttribute(
+    const contact = page.locator("#contact");
+    await expect(contact.getByRole("button")).toHaveCount(0);
+    await expect(contact.getByText("Copy the address and paste it", { exact: false })).toHaveCount(0);
+    await expect(
+      contact.getByRole("link", { name: "https://www.linkedin.com/in/andrewodom18" })
+    ).toHaveAttribute(
       "href",
-      "mailto:contact@aodom.dev?subject=Software%20engineering%20opportunity"
+      "https://www.linkedin.com/in/andrewodom18"
     );
-
-    await page.getByRole("button", { name: "Copy email address" }).click();
-    await expect(page.getByRole("button", { name: "Email copied" })).toBeVisible();
-    await expect(page.getByRole("status")).toContainText("contact@aodom.dev");
-  });
-
-  test("copy action provides a Mac fallback when clipboard access is unavailable", async ({
-    page
-  }) => {
-    await page.addInitScript(() => {
-      Object.defineProperty(navigator, "clipboard", {
-        configurable: true,
-        value: { writeText: async () => Promise.reject(new Error("Clipboard unavailable")) }
-      });
-    });
-    await page.goto("/");
-
-    await page.getByRole("button", { name: "Copy email address" }).click();
-    await expect(page.getByRole("button", { name: "Email selected" })).toBeVisible();
-    await expect(page.getByRole("status")).toContainText("Press Command+C");
+    await expect(
+      contact.getByRole("link", { name: "https://github.com/andrewodom18" })
+    ).toHaveAttribute("href", "https://github.com/andrewodom18");
   });
 
   test("legacy docs routes redirect to selected work", async ({ page }) => {

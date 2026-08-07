@@ -97,8 +97,7 @@ export const portfolioContent = {
     eyebrow: "Contact",
     title: "Start a conversation.",
     text: "For software engineering roles and professional inquiries, email is the best way to reach me.",
-    emailSubject: "Software engineering opportunity",
-    emailNote: "Copy the address and paste it into your preferred email service."
+    emailSubject: "Software engineering opportunity"
   }
 } as const;
 

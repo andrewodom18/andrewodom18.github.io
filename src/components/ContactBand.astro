@@ -16,34 +16,31 @@ const emailHref = `mailto:${portfolioContent.site.email}?subject=${encodeURIComp
       </div>
       <div class="contact-band__panel" aria-label="Contact options">
         <p class="contact-band__label">Email</p>
-        <a class="contact-band__email" href={emailHref} data-email-address>
+        <a class="contact-band__email" href={emailHref}>
           {portfolioContent.site.email}
         </a>
-        <p class="contact-band__note">{portfolioContent.contact.emailNote}</p>
-        <div class="contact-band__actions">
-          <button
-            class="button button--light"
-            type="button"
-            data-copy-email
-            data-email={portfolioContent.site.email}
-          >
-            Copy email address
-          </button>
-          <a class="button button--contact-outline" href={emailHref}>
-            Open email app <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <span class="contact-band__status" role="status" aria-live="polite" data-copy-status></span>
-        <div class="contact-band__secondary">
-          <span>LinkedIn</span>
-          <a
-            href="https://linkedin.com/in/andrewodom18/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View professional profile <span aria-hidden="true">↗</span>
-          </a>
-        </div>
+        <ul class="contact-band__profiles" aria-label="Professional profiles">
+          <li class="contact-band__secondary">
+            <span>LinkedIn</span>
+            <a
+              href="https://www.linkedin.com/in/andrewodom18"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://www.linkedin.com/in/andrewodom18 <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="contact-band__secondary">
+            <span>GitHub</span>
+            <a
+              href="https://github.com/andrewodom18"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://github.com/andrewodom18 <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
