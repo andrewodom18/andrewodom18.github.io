@@ -31,8 +31,6 @@ export const portfolioContent = {
     titleEmphasis: "Software developer.",
     summary:
       "I build web and mobile applications at Air Force BESPIN and through independent projects.",
-    primaryAction: { label: "About me", href: "/#about" },
-    secondaryAction: { label: "Contact", href: "/#contact" },
     profile: [
       { label: "Current role", value: "Software Developer at Air Force BESPIN" },
       { label: "Experience", value: "December 2023 — Present" },

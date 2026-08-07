@@ -409,29 +409,10 @@ p {
 }
 
 .hero__intro > p {
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   color: var(--ink-soft);
   font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   line-height: 1.75;
-}
-
-.hero__socials {
-  display: flex;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-
-.hero__socials a {
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-decoration-color: var(--cobalt);
-}
-
-.hero__socials a:hover {
-  color: var(--cobalt);
 }
 
 .hero-profile {
