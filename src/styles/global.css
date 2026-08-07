@@ -1036,29 +1036,9 @@ p {
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.18);
 }
 
-.contact-band__label {
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.65);
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.contact-band__email {
-  display: inline-block;
-  margin-bottom: 0;
-  color: var(--white);
-  font-family: var(--mono);
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  font-weight: 700;
-}
-
 .contact-band__profiles {
-  margin: 2rem 0 0;
+  margin: 0;
   padding: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.24);
   list-style: none;
 }
 

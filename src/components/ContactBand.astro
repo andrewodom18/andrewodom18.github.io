@@ -15,11 +15,13 @@ const emailHref = `mailto:${portfolioContent.site.email}?subject=${encodeURIComp
         <p>{portfolioContent.contact.text}</p>
       </div>
       <div class="contact-band__panel" aria-label="Contact options">
-        <p class="contact-band__label">Email</p>
-        <a class="contact-band__email" href={emailHref}>
-          {portfolioContent.site.email}
-        </a>
-        <ul class="contact-band__profiles" aria-label="Professional profiles">
+        <ul class="contact-band__profiles" aria-label="Contact links">
+          <li class="contact-band__secondary">
+            <span>Email</span>
+            <a href={emailHref}>
+              {portfolioContent.site.email} <span aria-hidden="true">↗</span>
+            </a>
+          </li>
           <li class="contact-band__secondary">
             <span>LinkedIn</span>
             <a
