@@ -1,9 +1,9 @@
 /contact /#contact 301
 /contact/ /#contact 301
-/docs /work/ 301
-/docs/ /work/ 301
-/docs/* /work/ 301
-/work/store-template /work/ 301
-/work/store-template/ /work/ 301
-/work/aodom-dev /work/ 301
-/work/aodom-dev/ /work/ 301
+/docs https://github.com/odom-technology 301
+/docs/ https://github.com/odom-technology 301
+/docs/* https://github.com/odom-technology 301
+/work/store-template https://github.com/odom-technology 301
+/work/store-template/ https://github.com/odom-technology 301
+/work/aodom-dev https://github.com/odom-technology 301
+/work/aodom-dev/ https://github.com/odom-technology 301

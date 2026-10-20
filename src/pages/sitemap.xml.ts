@@ -1,11 +1,11 @@
-import { portfolioContent } from "../data/portfolio";
+import { resumeContent } from "../data/resume";
 
 export const prerender = true;
 
 export function GET() {
-  const paths = ["/", "/work/", "/resume/"];
+  const paths = ["/", "/resume/", "/resume.pdf"];
   const urls = paths
-    .map((path) => `<url><loc>${new URL(path, portfolioContent.site.url)}</loc></url>`)
+    .map((path) => `<url><loc>${new URL(path, resumeContent.site.url)}</loc></url>`)
     .join("");
 
   return new Response(

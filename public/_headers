@@ -12,3 +12,7 @@
 
 /assets/andrew-odom-profile.png
   Cache-Control: public, max-age=86400
+
+/resume.pdf
+  Content-Disposition: inline; filename="Andrew-Odom-Resume.pdf"
+  Cache-Control: public, max-age=3600, no-transform

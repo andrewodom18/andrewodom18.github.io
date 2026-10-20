@@ -1,5 +1,5 @@
 ---
-import { portfolioContent } from "../data/portfolio";
+import { resumeContent } from "../data/resume";
 
 interface Props {
   currentPath?: string;
@@ -18,15 +18,20 @@ const isCurrent = (href: string) => {
   <div class="site-header__inner">
     <a class="brand" href="/">
       <span class="brand__text">
-        <strong>{portfolioContent.site.name}</strong>
+        <strong>{resumeContent.site.name}</strong>
         <span>Software developer</span>
       </span>
     </a>
 
     <nav class="site-nav" aria-label="Primary navigation">
       {
-        portfolioContent.navigation.map((item) => (
-          <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+        resumeContent.navigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isCurrent(item.href) ? "page" : undefined}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          >
             {item.label}
           </a>
         ))

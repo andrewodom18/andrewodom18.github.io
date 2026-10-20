@@ -2,14 +2,15 @@
 import ContactBand from "../../components/ContactBand.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
-import { portfolioContent } from "../../data/portfolio";
+import { resumeContent } from "../../data/resume";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title={`Work | ${portfolioContent.site.name}`}
-  description="Public work from Andrew Odom will be added when it is ready."
+  title={`Portfolio | ${resumeContent.site.name}`}
+  description="Apps, tools, and experiments by Andrew Odom, the creator of ODOM Tech."
   canonicalPath="/work/"
+  noIndex
 >
   <SiteHeader currentPath="/work/" />
 
@@ -17,8 +18,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <header class="page-hero">
       <div class="shell page-hero__grid page-hero__grid--single">
         <div>
-          <p class="eyebrow">Selected work</p>
-          <h1>TBD</h1>
+          <p class="eyebrow">Portfolio</p>
+          <h1>My work lives at ODOM Tech.</h1>
+          <p>
+            This site is focused on my resume and professional background. My independent software projects,
+            developer tools, and tech experiments are collected under ODOM Tech.
+          </p>
+          <a
+            class="button button--primary"
+            href={resumeContent.ownership.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit ODOM Tech <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
     </header>
