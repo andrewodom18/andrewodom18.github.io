@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import LayeredBackground from "../components/LayeredBackground.astro";
 import { resumeContent } from "../data/resume";
 
 interface Props {
@@ -62,8 +63,8 @@ const structuredData = [
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap.xml" />
-    <meta name="theme-color" content="#050b16" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#f7f8fa" />
+    <meta name="color-scheme" content="light" />
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
     <meta property="og:type" content="website" />
@@ -87,6 +88,7 @@ const structuredData = [
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
+    <LayeredBackground />
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
   </body>

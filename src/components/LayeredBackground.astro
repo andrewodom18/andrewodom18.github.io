@@ -1,0 +1,160 @@
+<!-- The ODOM Tech fold geometry, adapted to a light paper palette. -->
+<div class="layered-background" data-layered-background aria-hidden="true">
+      <svg class="layered-folds" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <defs>
+          <linearGradient id="personal-fold-back" gradientUnits="userSpaceOnUse" x1="120" y1="20" x2="740" y2="470">
+            <stop stop-color="#e0e5ec"/>
+            <stop offset=".35" stop-color="#f1f3f7"/>
+            <stop offset=".72" stop-color="#f7f8fa"/>
+            <stop offset="1" stop-color="#e0e5ec"/>
+          </linearGradient>
+          <linearGradient id="personal-fold-left" gradientUnits="userSpaceOnUse" x1="110" y1="80" x2="460" y2="420">
+            <stop stop-color="#e7ecf2"/>
+            <stop offset=".55" stop-color="#ffffff"/>
+            <stop offset="1" stop-color="#edf1f6"/>
+          </linearGradient>
+          <linearGradient id="personal-fold-twist" gradientUnits="userSpaceOnUse" x1="1170" y1="-70" x2="710" y2="500">
+            <stop stop-color="#d8e0e9"/>
+            <stop offset=".25" stop-color="#edf1f6"/>
+            <stop offset=".55" stop-color="#ffffff"/>
+            <stop offset=".83" stop-color="#f1f3f7"/>
+            <stop offset="1" stop-color="#d4dde8"/>
+          </linearGradient>
+          <linearGradient id="personal-fold-wave" gradientUnits="userSpaceOnUse" x1="800" y1="330" x2="850" y2="810">
+            <stop stop-color="#dce4ed"/>
+            <stop offset=".25" stop-color="#eaf0f6"/>
+            <stop offset=".6" stop-color="#fbfcfd"/>
+            <stop offset="1" stop-color="#f7f8fa"/>
+          </linearGradient>
+          <linearGradient id="personal-fold-low" gradientUnits="userSpaceOnUse" x1="80" y1="850" x2="460" y2="560">
+            <stop stop-color="#d7e0eb"/>
+            <stop offset=".38" stop-color="#edf2f7"/>
+            <stop offset="1" stop-color="#f7f8fa"/>
+          </linearGradient>
+        </defs>
+        <g class="fold-layer fold-layer-back">
+          <path d="M-180-180H1050C960 15 827 93 786 234C749 363 691 443 588 468C444 502 287 391 100 293C-19 230-100 209-180 213Z" fill="url(#personal-fold-back)"/>
+          <path d="M245-160C412-35 480 144 427 330C390 460 252 527-180 528V-160Z" fill="url(#personal-fold-left)"/>
+          <path d="M245-160C412-35 480 144 427 330" fill="none" stroke="#64748b" stroke-opacity=".16" stroke-width=".8"/>
+        </g>
+        <g class="fold-layer fold-layer-middle">
+          <path d="M650-160H1750V68C1405-13 1132 56 958 154C827 227 751 303 716 400C690 471 654 501 581 496C734 389 778 231 786 113C791 7 748-83 650-160Z" fill="url(#personal-fold-twist)"/>
+          <path d="M1750 68C1405-13 1132 56 958 154C827 227 751 303 716 400" fill="none" stroke="#64748b" stroke-opacity=".16" stroke-width=".8"/>
+        </g>
+        <g class="fold-layer fold-layer-front">
+          <path d="M-180 532C84 546 281 490 486 427C666 371 727 344 878 371C1098 411 1252 571 1780 474V1180H-180Z" fill="url(#personal-fold-wave)"/>
+          <path d="M-180 532C84 546 281 490 486 427C666 371 727 344 878 371C1098 411 1252 571 1780 474" fill="none" stroke="#64748b" stroke-opacity=".16" stroke-width=".8"/>
+          <path d="M-180 955C98 860 187 696 351 605C455 547 557 524 730 521C449 492 174 581-180 679Z" fill="url(#personal-fold-low)"/>
+        </g>
+      </svg>
+</div>
+
+<style>
+  .layered-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background: #f7f8fa;
+  }
+
+  .layered-folds {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .fold-layer {
+    transform-box: view-box;
+    transform-origin: center;
+  }
+
+  .fold-layer-back {
+    translate: 0 calc(var(--scroll-depth, 0) * -48px);
+    animation: fold-back 24s ease-in-out infinite alternate paused;
+  }
+
+  .fold-layer-middle {
+    translate: 0 calc(var(--scroll-depth, 0) * 24px);
+    animation: fold-middle 28s ease-in-out infinite alternate paused;
+  }
+
+  .fold-layer-front {
+    translate: 0 calc(var(--scroll-depth, 0) * 88px);
+    animation: fold-front 32s ease-in-out infinite alternate paused;
+  }
+
+  .layered-background[data-motion="running"] .fold-layer {
+    animation-play-state: running;
+  }
+
+  @keyframes fold-back {
+    from { transform: translate3d(-2%, -2%, 0) rotate(-2deg); }
+    to { transform: translate3d(3%, 2%, 0) rotate(2deg); }
+  }
+
+  @keyframes fold-middle {
+    from { transform: translate3d(2%, -2%, 0) rotate(1deg); }
+    to { transform: translate3d(-2%, 2%, 0) rotate(-2deg); }
+  }
+
+  @keyframes fold-front {
+    from { transform: translate3d(0, 2%, 0) rotate(-2deg); }
+    to { transform: translate3d(-2%, -2%, 0) rotate(1deg); }
+  }
+
+  @media (max-width: 50rem) {
+    .fold-layer-back { translate: 0 calc(var(--scroll-depth, 0) * -24px); }
+    .fold-layer-middle { translate: 0 calc(var(--scroll-depth, 0) * 12px); }
+    .fold-layer-front { translate: 0 calc(var(--scroll-depth, 0) * 44px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fold-layer {
+      animation: none;
+      translate: none;
+    }
+  }
+
+  @media print {
+    .layered-background { display: none; }
+  }
+</style>
+
+<script>
+  const background = document.querySelector<HTMLElement>("[data-layered-background]");
+
+  if (background) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let depthFrame = 0;
+
+    const requestDepthUpdate = () => {
+      if (background.dataset.motion !== "running" || depthFrame) return;
+      depthFrame = window.requestAnimationFrame(() => {
+        depthFrame = 0;
+        if (background.dataset.motion !== "running") return;
+        const range = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0;
+        background.style.setProperty("--scroll-depth", progress.toFixed(4));
+      });
+    };
+
+    const updateMotion = () => {
+      const paused = reducedMotion.matches || document.hidden;
+      background.dataset.motion = paused ? "paused" : "running";
+      if (paused && depthFrame) {
+        window.cancelAnimationFrame(depthFrame);
+        depthFrame = 0;
+      }
+      if (reducedMotion.matches) background.style.removeProperty("--scroll-depth");
+      if (!paused) requestDepthUpdate();
+    };
+
+    reducedMotion.addEventListener("change", updateMotion);
+    document.addEventListener("visibilitychange", updateMotion);
+    window.addEventListener("scroll", requestDepthUpdate, { passive: true });
+    window.addEventListener("resize", requestDepthUpdate, { passive: true });
+    updateMotion();
+  }
+</script>

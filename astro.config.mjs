@@ -7,6 +7,8 @@ export default defineConfig({
   outDir: "./site",
   trailingSlash: "always",
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    // Keep generated scripts/styles external for the site's self-only CSP.
+    build: { assetsInlineLimit: 0 }
   }
 });
