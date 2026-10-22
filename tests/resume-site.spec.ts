@@ -157,4 +157,49 @@ test.describe("public resume site", () => {
 
     expect(dimensions.documentWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
   });
+
+  test("layered background follows scrolling and reduced motion", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    const background = page.locator("[data-layered-background]");
+    await expect(background).toBeVisible();
+    await expect(background).toHaveAttribute("aria-hidden", "true");
+    await expect(background).toHaveAttribute("data-motion", "paused");
+    await expect(page.locator(".fold-layer-back")).toHaveCSS("animation-name", "none");
+
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await expect(background).toHaveAttribute("data-motion", "running");
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await expect.poll(async () => background.evaluate((element) =>
+      Number((element as HTMLElement).style.getPropertyValue("--scroll-depth"))
+    )).toBeGreaterThan(0);
+    await expect(background).toHaveCSS("position", "fixed");
+    await expect(background).toHaveCSS("pointer-events", "none");
+    expect((await background.boundingBox())?.y).toBe(0);
+
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expect(background).toHaveAttribute("data-motion", "paused");
+    await expect(background).not.toHaveAttribute("style", /--scroll-depth/);
+  });
+
+  test("background remains static without JavaScript", async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    try {
+      const page = await context.newPage();
+      await page.goto("/");
+      await expect(page.locator("main")).toBeVisible();
+      await expect(page.locator("[data-layered-background]")).toBeVisible();
+      await expect(page.locator(".fold-layer-back")).toHaveCSS("animation-play-state", "paused");
+    } finally {
+      await context.close();
+    }
+  });
+
+  test("printed resume omits the decorative background", async ({ page }) => {
+    await page.goto("/resume/");
+    await page.emulateMedia({ media: "print" });
+    await expect(page.locator("[data-layered-background]")).toBeHidden();
+    await expect(page.locator(".resume-document")).toBeVisible();
+    await expect(page.locator(".resume-document")).toHaveCSS("background-color", "rgb(255, 255, 255)");
+  });
 });

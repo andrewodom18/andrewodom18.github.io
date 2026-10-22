@@ -12,6 +12,16 @@ for apps, tools, and experiments.
 - Playwright and axe accessibility smoke tests
 - GitHub Pages deployment, with Cloudflare Workers compatibility
 
+## Background
+
+The personal site uses a light version of ODOM Tech's layered SVG folds, shared
+across pages through `LayeredBackground.astro`. Slow CSS drift and bounded scroll
+offsets add depth without a graphics or animation dependency. Motion pauses in
+hidden tabs and becomes static for reduced motion; without JavaScript, the SVG
+stays visible and still. The background is decorative, never captures input,
+and is hidden in print. Keep the light palette and foreground contrast together
+when adjusting the folds.
+
 ## Resume PDF
 
 The public PDF is generated from `scripts/generate_resume_pdf.py` and served at
