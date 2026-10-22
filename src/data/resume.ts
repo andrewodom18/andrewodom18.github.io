@@ -14,12 +14,10 @@ export const resumeContent = {
     resumePdf: "/resume.pdf"
   },
   navigation: [
-    { label: "About", href: "/#about" },
-    { label: "Experience", href: "/#experience" },
-    { label: "Education", href: "/#education" },
-    { label: "Skills", href: "/#skills" },
+    { label: "GitHub", href: "https://github.com/andrewodom18" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/andrewodom18/" },
     { label: "Resume", href: "/resume/" },
-    { label: "Portfolio", href: "https://github.com/odom-technology" }
+    { label: "Buy Me a Coffee", href: "https://buymeacoffee.com/andrewodom18" }
   ] satisfies readonly LinkItem[],
   social: [
     { label: "GitHub", href: "https://github.com/andrewodom18" },
@@ -29,7 +27,6 @@ export const resumeContent = {
   hero: {
     eyebrow: "Software Developer · Air Force BESPIN",
     title: "Andrew Odom",
-    titleEmphasis: "Software Developer",
     summary:
       "I build reliable web and mobile applications, data systems, and delivery automation. I’m also the creator of ODOM Tech, my personal tech and project brand for apps, tools, and experiments.",
     profile: [
@@ -104,6 +101,8 @@ export const resumeContent = {
     eyebrow: "Contact",
     title: "Start a conversation.",
     text: "For software engineering roles and professional inquiries, email is the best way to reach me.",
+    projectText: "For ODOM Tech and ODOM Tech project-related conversations, please use the contact form on the ODOM Tech website.",
+    projectHref: "https://odomtech.com/contact/",
     emailSubject: "Software engineering opportunity"
   }
 } as const;

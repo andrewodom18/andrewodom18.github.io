@@ -13,6 +13,7 @@ const emailHref = `mailto:${resumeContent.site.email}?subject=${encodeURICompone
         <p class="eyebrow eyebrow--light">{resumeContent.contact.eyebrow}</p>
         <h2 id="contact-title">{resumeContent.contact.title}</h2>
         <p>{resumeContent.contact.text}</p>
+        <p>{resumeContent.contact.projectText}</p>
       </div>
       <div class="contact-band__panel" aria-label="Contact options">
         <ul class="contact-band__profiles" aria-label="Contact links">
@@ -23,23 +24,13 @@ const emailHref = `mailto:${resumeContent.site.email}?subject=${encodeURICompone
             </a>
           </li>
           <li class="contact-band__secondary">
-            <span>LinkedIn</span>
+            <span>ODOM Tech</span>
             <a
-              href="https://www.linkedin.com/in/andrewodom18"
+              href={resumeContent.contact.projectHref}
               target="_blank"
               rel="noopener noreferrer"
             >
-              @andrewodom18
-            </a>
-          </li>
-          <li class="contact-band__secondary">
-            <span>GitHub</span>
-            <a
-              href="https://github.com/andrewodom18"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              github.com/andrewodom18
+              Use the contact form
             </a>
           </li>
         </ul>

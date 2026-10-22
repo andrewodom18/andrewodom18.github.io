@@ -27,7 +27,7 @@ test.describe("public resume site", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /Andrew Odom Software Developer/i
+        name: "Andrew Odom"
       })
     ).toBeVisible();
     await expect(page.getByRole("heading", { name: /Practical software, built with care/i })).toBeVisible();
@@ -38,26 +38,37 @@ test.describe("public resume site", () => {
     await expect(page.getByText("TBD")).toHaveCount(0);
 
     const navigation = page.getByRole("navigation", { name: "Primary navigation" });
-    await expect(navigation.getByRole("link", { name: "Portfolio" })).toHaveAttribute(
+    await expect(navigation.getByRole("link", { name: "GitHub" })).toHaveAttribute(
       "href",
-      "https://github.com/odom-technology"
+      "https://github.com/andrewodom18"
+    );
+    await expect(navigation.getByRole("link")).toHaveText([
+      "GitHub", "LinkedIn", "Resume", "Buy Me a Coffee"
+    ]);
+    await expect(page.locator(".brand")).toHaveText("Andrew Odom");
+    await expect(page.getByRole("contentinfo").getByRole("navigation").getByRole("link")).toHaveText([
+      "Buy Me a Coffee"
+    ]);
+    await expect(page.getByRole("contentinfo").getByRole("link", { name: "Buy Me a Coffee" })).toHaveAttribute(
+      "href", "https://buymeacoffee.com/andrewodom18"
     );
     await expect(navigation.getByRole("link", { name: "Work" })).toHaveCount(0);
   });
 
   test("contact link reaches verified contact details", async ({ page }) => {
-    await page.goto("/");
-
-    await page
-      .getByRole("banner")
-      .getByRole("link", { name: "Contact", exact: true })
-      .click();
+    await page.goto("/#contact");
     await expect(page).toHaveURL(/\/#contact$/);
     await expect(page.getByRole("heading", { name: "Start a conversation." })).toBeVisible();
     await expect(page.getByRole("link", { name: "contact@aodom.dev" })).toHaveAttribute(
       "href",
       "mailto:contact@aodom.dev?subject=Software%20engineering%20opportunity"
     );
+    const contact = page.locator("#contact");
+    await expect(contact.getByRole("link", { name: "Use the contact form" })).toHaveAttribute(
+      "href", "https://odomtech.com/contact/"
+    );
+    await expect(contact.getByText(/For ODOM Tech and ODOM Tech project-related conversations/)).toBeVisible();
+    await expect(contact.getByRole("link")).toHaveCount(2);
   });
 
   test("portfolio handoff points to ODOM Tech", async ({ page }) => {
@@ -91,6 +102,9 @@ test.describe("public resume site", () => {
     await page.goto("/resume/");
     const openPdf = page.getByRole("link", { name: "Open PDF" });
     const downloadPdf = page.getByRole("link", { name: /Download PDF/i });
+    await expect(page.locator(".resume-document .resume-actions")).toHaveCount(0);
+    await expect(page.locator(".resume-page > .resume-actions")).toBeVisible();
+    await expect(page.locator(".resume-header a[href='https://github.com/andrewodom18']")).toHaveCount(0);
     await expect(openPdf).toHaveAttribute("href", "/resume.pdf");
     await expect(openPdf).toHaveAttribute("target", "_blank");
     await expect(downloadPdf).toHaveAttribute("href", "/resume.pdf");

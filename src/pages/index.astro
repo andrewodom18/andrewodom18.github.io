@@ -12,12 +12,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="shell">
-        <p class="eyebrow hero__eyebrow">{resumeContent.hero.eyebrow}</p>
         <div class="hero__grid">
-          <h1 id="hero-title">
-            {resumeContent.hero.title}{" "}
-            <em>{resumeContent.hero.titleEmphasis}</em>
-          </h1>
+          <div class="hero__heading">
+            <p class="eyebrow hero__eyebrow">{resumeContent.hero.eyebrow}</p>
+            <h1 id="hero-title">{resumeContent.hero.title}</h1>
+          </div>
           <div class="hero__side" data-reveal>
             <div class="hero__intro">
               <p>{resumeContent.hero.summary}</p>

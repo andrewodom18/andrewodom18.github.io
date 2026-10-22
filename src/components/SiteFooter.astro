@@ -9,17 +9,9 @@ import { resumeContent } from "../data/resume";
       <p>Software developer · Creator of ODOM Tech</p>
     </div>
     <nav aria-label="Footer navigation">
-      {
-        resumeContent.social.map((link) => (
-          <a
-            href={link.href}
-            target={link.href.startsWith("http") ? "_blank" : undefined}
-            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-          >
-            {link.label}
-          </a>
-        ))
-      }
+      <a href="https://buymeacoffee.com/andrewodom18" target="_blank" rel="noopener noreferrer">
+        Buy Me a Coffee
+      </a>
     </nav>
   </div>
 </footer>
