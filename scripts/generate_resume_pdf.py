@@ -184,7 +184,6 @@ def build_resume() -> Path:
     contact_lines = [
         linked_text("contact@aodom.dev", "mailto:contact@aodom.dev"),
         linked_text("andrewodom18.github.io", "https://andrewodom18.github.io"),
-        linked_text("github.com/andrewodom18", "https://github.com/andrewodom18"),
         linked_text("linkedin.com/in/andrewodom18", "https://linkedin.com/in/andrewodom18/"),
     ]
 
