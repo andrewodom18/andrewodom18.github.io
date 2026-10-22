@@ -3,7 +3,7 @@ import { resumeContent } from "../data/resume";
 export const prerender = true;
 
 export function GET() {
-  const paths = ["/", "/resume/", "/resume.pdf"];
+  const paths = ["/", "/resume/", "/resume.pdf", "/work/pocketledger/"];
   const urls = paths
     .map((path) => `<url><loc>${new URL(path, resumeContent.site.url)}</loc></url>`)
     .join("");

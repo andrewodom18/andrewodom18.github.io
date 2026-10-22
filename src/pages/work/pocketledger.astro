@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import ContactBand from "../../components/ContactBand.astro";
+---
+
+<BaseLayout
+  title="PocketLedger engineering case study | Andrew Odom"
+  description="Building an offline finance PWA with exact money calculations, revision-safe local storage, and portable encrypted backups."
+  canonicalPath="/work/pocketledger/"
+>
+  <SiteHeader currentPath="/work/pocketledger/" />
+  <main id="main" class="case-study">
+    <header class="case-intro shell">
+      <p class="eyebrow">Independent product engineering · ODOM Tech</p>
+      <h1>PocketLedger</h1>
+      <p class="case-lead">Making everyday money easier to understand, without handing the ledger to a backend.</p>
+      <p class="case-status">Live web app · October 2026</p>
+      <p class="case-measure">I built a responsive web app that combines monthly budgets, shared expense ledgers, and debt payoff scenarios. The engineering focus is correctness and recoverability: exact minor-unit calculations, atomic local saves, and backups that can move between devices.</p>
+      <div class="button-row"><a class="button button--primary" href="https://pocketledger-eyp.pages.dev/">Open PocketLedger</a><a class="text-link" href="#engineering">Explore the engineering</a><a class="text-link" href="/#portfolio">Back to my profile</a></div>
+      <dl class="case-facts"><div><dt>Platform</dt><dd>Offline-capable PWA</dd></div><div><dt>Stack</dt><dd>React, TypeScript, Vite, Dexie</dd></div><div><dt>Backend</dt><dd>No financial API or server database</dd></div><div><dt>Status</dt><dd>Live on Cloudflare Pages</dd></div></dl>
+    </header>
+    <figure class="shell case-preview"><picture><source media="(max-width: 760px)" srcset="/assets/projects/pocketledger-overview-mobile.png" width="390" height="844" /><img src="/assets/projects/pocketledger-overview-desktop.png" width="1440" height="1000" alt="PocketLedger sample workspace with budget, shared expense, and debt payoff summaries." /></picture><figcaption>Actual app screenshot using synthetic demo data, with a mobile viewport preview on narrow screens. No personal financial records are shown.</figcaption></figure>
+    <section class="section shell case-section" aria-labelledby="problem-title"><div><p class="eyebrow">The problem</p><h2 id="problem-title">Useful finance tools without account overhead.</h2></div><div class="case-copy"><p>Budgets, shared costs, and payoff plans often become separate spreadsheets or require a service account. I wanted these small tasks to share a consistent interface while keeping their records independent. Recording a group repayment does not silently change a personal budget; a debt projection does not pretend a payment happened.</p><p>The current tools are free. The architecture targets $0 ongoing financial-backend cost by keeping calculations and storage on the device. Static hosting still serves normal app-file requests; this is not a promise of unlimited free hosting or zero operating effort.</p></div></section>
+    <section class="section shell" id="engineering" aria-labelledby="engineering-title"><p class="eyebrow">Engineering decisions</p><h2 id="engineering-title">Correct arithmetic. Recoverable state.</h2><div class="decision-list">
+      <article><h3>Keep money out of floating-point calculations.</h3><p>Stored amounts are safe integer minor units. BigInt intermediates handle parsing, weighted splits, and interest calculations. Equal, percentage, share, and exact splits use deterministic remainder allocation so participant amounts match the original total. JPY uses zero decimal places; the other supported currencies use two.</p></article>
+      <article><h3>Make a save one transaction.</h3><p>Dexie wraps IndexedDB writes, expected-revision checks, and recovery-copy rotation in one transaction. A stale browser tab cannot overwrite a newer ledger. The UI publishes committed state only after a successful save and retains form drafts when saving fails.</p></article>
+      <article><h3>Make portability part of the data contract.</h3><p>Complete JSON and encrypted exports use an explicit versioned schema. Restores validate structure, references, duplicate IDs, calendar dates, and money totals before previewing replacement. Unsupported versions are refused. Three local recovery slots help with mistakes but are not independent backups.</p></article>
+      <article><h3>Encrypt the exported recovery copy.</h3><p>Portable backups use Web Crypto AES-256-GCM, random salt and IV, and PBKDF2-SHA-256 with 600,000 iterations. The user keeps the passphrase; it is not stored. Local IndexedDB records remain unencrypted, so the device lock and independent backups matter. Hiding amounts is only a display preference.</p></article>
+      <article><h3>Keep estimates honest.</h3><p>Snowball and avalanche comparisons use the same starting monthly payment budget. Minimums are covered before extra payments; paid-off minimums roll forward. The model uses rounded monthly APR/12 interest and a 600-month horizon. Due days are informational; actual lender schedules can differ.</p></article>
+    </div></section>
+    <section class="section shell case-section" aria-labelledby="walkthrough-title"><div><p class="eyebrow">Product walkthrough</p><h2 id="walkthrough-title">From a monthly plan to a portable ledger.</h2></div><ol class="case-walkthrough"><li><strong>Budget:</strong> choose a month, set category plans and optional rollover, then record expenses, income, or refunds. Confirm monthly reminders explicitly.</li><li><strong>Split:</strong> create a group, select a payer and participants, review allocations, and record real repayments. Preview the summary before copying, printing, downloading, or sharing.</li><li><strong>Debt:</strong> enter balances, APRs, and minimums; vary extra payments; inspect both strategies and the monthly schedule before saving a scenario.</li><li><strong>Recover:</strong> download an encrypted backup, then test restoring it in a separate browser profile. Import replaces records; transaction CSV is not a full backup.</li></ol></section>
+    <section class="section shell case-section" aria-labelledby="evidence-title"><div><p class="eyebrow">Evidence and limits</p><h2 id="evidence-title">A live release with explicit validation limits.</h2></div><div class="case-copy"><p><strong>67 unit tests pass locally</strong> at this release checkpoint. Coverage includes exact allocations, budget rollover, recurring dates, debt projections, strict import validation, atomic writes, stale-tab conflicts, failure preservation, and encrypted backup round trips. Type checking, linting, and production builds are part of the local verification gate.</p><p>The PWA precaches its app shell and prompts before updates. Offline use needs a first online visit and completed caching. Browser eviction, clearing storage, a changed origin, or device loss can remove records; persistent storage requests do not replace an independent backup.</p><p>Hosted smoke checks passed in Chromium and WebKit, including offline use and backup workflows. These are browser-engine checks, not real-device trials. Physical iPhone/iPad Safari installation, other native-device behavior, Firefox, manual screen-reader review, and user trials remain unverified. No native package, bank integration, cloud sync, or paid model is implemented. The private source repository is not linked from this showcase.</p><p><a class="text-link" href="https://odomtech.com/pocketledger/">PocketLedger product case study at ODOM Tech <span aria-hidden="true">↗</span></a></p></div></section>
+    <ContactBand />
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .case-intro { padding-block: clamp(5rem, 9vw, 8rem) 3rem; }
+  .case-intro h1 { font-family: var(--display); font-size: clamp(3.2rem, 8vw, 7rem); font-weight: 500; line-height: 1; letter-spacing: -.05em; margin-block: 1rem 1.75rem; overflow-wrap: anywhere; }
+  .case-lead { max-width: 37ch; font-size: clamp(1.4rem, 2.7vw, 2rem); line-height: 1.4; color: var(--ink-soft); }
+  .case-status { color: var(--blue); font-weight: 600; margin-block: 1.5rem; }
+  .case-measure { max-width: 68ch; color: var(--muted); margin-bottom: 2rem; }
+  .case-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; margin-top: 3.5rem; }
+  .case-facts dt { color: var(--muted); font-size: .82rem; margin-bottom: .5rem; }
+  .case-facts dd { margin: 0; font-size: .95rem; }
+  .case-preview { margin-block: 0; }
+  .case-preview img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+  .case-preview figcaption { margin-top: .8rem; font-size: .88rem; color: var(--muted); }
+  .case-study h2 { font-family: var(--display); font-size: clamp(2rem, 4.2vw, 3.5rem); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; max-width: 23ch; }
+  .case-section { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(2rem, 5vw, 5rem); }
+  .case-copy p { max-width: 64ch; color: var(--ink-soft); margin-bottom: 1.5rem; }
+  .decision-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 4rem; margin-top: 2.5rem; }
+  .decision-list h3 { font-size: 1.25rem; line-height: 1.4; margin-bottom: .8rem; }
+  .decision-list p { color: var(--ink-soft); max-width: 60ch; }
+  .case-walkthrough { margin: 0; padding-left: 1.3rem; color: var(--ink-soft); }
+  .case-walkthrough li { padding-left: .3rem; margin-bottom: 1.5rem; }
+  @media (max-width: 760px) { .case-section, .decision-list { grid-template-columns: 1fr; } .case-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 420px) { .case-facts { grid-template-columns: 1fr; gap: 1.1rem; } }
+</style>

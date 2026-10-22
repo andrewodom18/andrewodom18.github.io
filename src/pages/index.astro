@@ -152,6 +152,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           >
             View the ODOM Tech portfolio <span aria-hidden="true">↗</span>
           </a>
+          <article class="ownership-project">
+            <p class="eyebrow">Selected project · Live web app</p>
+            <h3>PocketLedger</h3>
+            <p>A private finance PWA built around exact money calculations, revision-safe local saves, and portable encrypted backups.</p>
+            <a class="text-link" href="/work/pocketledger/">Read the PocketLedger engineering case study <span aria-hidden="true">→</span></a>
+          </article>
         </div>
       </div>
     </section>
@@ -161,3 +167,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <SiteFooter />
 </BaseLayout>
+
+<style>
+  .ownership-project { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line-strong); }
+  .ownership-project .eyebrow { font-size: .74rem; margin-bottom: .8rem; }
+  .ownership-project h3 { font-family: var(--display); font-size: 2rem; margin-bottom: .8rem; }
+  .ownership-project p:not(.eyebrow) { font-size: 1rem; line-height: 1.7; margin-bottom: 1rem; }
+</style>
