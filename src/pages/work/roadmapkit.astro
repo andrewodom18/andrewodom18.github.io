@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import ContactBand from "../../components/ContactBand.astro";
+---
+
+<BaseLayout
+  title="RoadmapKit: my role and contributions | Andrew Odom"
+  description="My role building RoadmapKit: a focused feedback-to-release workflow, tenant permissions, portable storage, and a deployment with $0 in new recurring subscriptions."
+  canonicalPath="/work/roadmapkit/"
+>
+  <SiteHeader currentPath="/work/roadmapkit/" />
+  <main id="main" class="project-page">
+    <header class="project-intro shell">
+      <p class="eyebrow">Independent product engineering · ODOM Tech · Disposable pilot</p>
+      <h1>RoadmapKit</h1>
+      <p class="project-lead">My role: connect customer feedback to visible decisions and shipped work.</p>
+      <p class="project-summary">I created RoadmapKit under ODOM Tech for small software teams that need a useful public board without much administration. I focused the product on one workflow: a customer requests a feature, the team explains its decision, progress becomes visible, and followers can opt into email updates.</p>
+      <div class="button-row"><a class="button button--primary" href="https://roadmapkit.odomtech.com/w/roadmapkit">Open the pilot board</a><a class="text-link" href="https://odomtech.com/roadmapkit/">Read the full case study at ODOM Tech <span aria-hidden="true">↗</span></a></div>
+    </header>
+    <section class="section shell project-contributions" aria-labelledby="contributions-title">
+      <div><p class="eyebrow">My contributions</p><h2 id="contributions-title">A focused product, built through deployment.</h2></div>
+      <ul>
+        <li><strong>Product and interface:</strong> designed public feedback, voting, flat comments, a status-based roadmap, and release notes linked to shipped requests. Kept voting separate from email consent and deferred billing, integrations, and custom workflows.</li>
+        <li><strong>Application boundaries:</strong> implemented workspace permissions, Google/GitHub sign-in, moderation, duplicate merging, and a persistent outbox for capped, opt-in daily summaries.</li>
+        <li><strong>Delivery and portability:</strong> built the React/TypeScript interface and Hono API for Cloudflare Workers and D1, with a Node/SQLite container target. Deployed the pilot using $0 in new recurring subscriptions and checked encrypted restore and code rollback.</li>
+      </ul>
+    </section>
+    <figure class="shell project-preview"><picture><source media="(max-width: 760px)" srcset="/assets/projects/roadmapkit-board-mobile.png" width="390" height="844" /><img src="/assets/projects/roadmapkit-board-desktop.png" width="1440" height="1000" alt="RoadmapKit’s public feedback board with one disposable validation request marked Shipped." /></picture><figcaption>The deployed pilot using disposable validation content. The <a class="text-link" href="https://odomtech.com/roadmapkit/">shared ODOM Tech case study</a> covers the architecture, cost limits, and validation. Customer adoption has not been measured; real customer content waits for off-site recovery.</figcaption></figure>
+    <div class="shell project-back"><a class="text-link" href="/#portfolio">Back to my profile <span aria-hidden="true">→</span></a></div>
+    <ContactBand />
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .project-intro { padding-block: clamp(5rem, 9vw, 8rem) 1rem; }
+  .project-intro h1 { font-family: var(--display); font-size: clamp(3.2rem, 8vw, 7rem); font-weight: 500; line-height: 1; letter-spacing: -.05em; margin-block: 1rem 1.75rem; overflow-wrap: anywhere; }
+  .project-lead { max-width: 40ch; font-size: clamp(1.4rem, 2.7vw, 2rem); line-height: 1.4; color: var(--ink-soft); }
+  .project-summary { max-width: 68ch; color: var(--muted); margin-block: 1.5rem 2rem; }
+  .project-contributions { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(2rem, 5vw, 5rem); }
+  .project-contributions h2 { font-family: var(--display); font-size: clamp(2rem, 4.2vw, 3.5rem); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; max-width: 23ch; }
+  .project-contributions ul { margin: 0; padding-left: 1.3rem; color: var(--ink-soft); }
+  .project-contributions li { padding-left: .3rem; margin-bottom: 1.5rem; }
+  .project-preview { margin-block: 0; }
+  .project-preview img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+  .project-preview figcaption { margin-top: .8rem; font-size: .88rem; color: var(--muted); }
+  .project-back { padding-top: 2rem; }
+  @media (max-width: 760px) { .project-contributions { grid-template-columns: 1fr; } }
+</style>

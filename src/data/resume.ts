@@ -97,6 +97,22 @@ export const resumeContent = {
     text: "ODOM Tech is my personal tech and project brand, the home for my independent software projects, developer tools, and tech experiments. Visit the organization to explore what I’m building.",
     href: "https://github.com/odom-technology"
   },
+  selectedProjects: [
+    {
+      name: "PocketLedger",
+      status: "Live web app",
+      summary: "I designed and built this private finance PWA, from exact money calculations and recoverable local storage to offline deployment.",
+      contributionHref: "/work/pocketledger/",
+      appHref: "https://pocketledger-eyp.pages.dev/"
+    },
+    {
+      name: "RoadmapKit",
+      status: "Disposable pilot",
+      summary: "I designed and built a feedback-to-release workflow with tenant permissions, portable SQLite storage, and a deployment using $0 in new recurring subscriptions.",
+      contributionHref: "/work/roadmapkit/",
+      appHref: "https://roadmapkit.odomtech.com/w/roadmapkit"
+    }
+  ],
   contact: {
     eyebrow: "Contact",
     title: "Start a conversation.",

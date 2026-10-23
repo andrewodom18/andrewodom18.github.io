@@ -152,12 +152,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           >
             View the ODOM Tech portfolio <span aria-hidden="true">↗</span>
           </a>
-          <article class="ownership-project">
-            <p class="eyebrow">Selected project · Live web app</p>
-            <h3>PocketLedger</h3>
-            <p>I designed and built this private finance PWA, from exact money calculations and recoverable local storage to offline deployment.</p>
-            <div class="button-row"><a class="text-link" href="/work/pocketledger/">My role and contributions <span aria-hidden="true">→</span></a><a class="text-link" href="https://pocketledger-eyp.pages.dev/">Open PocketLedger <span aria-hidden="true">↗</span></a></div>
-          </article>
+          {resumeContent.selectedProjects.map((project) => (
+            <article class="ownership-project">
+              <p class="eyebrow">Selected project · {project.status}</p>
+              <h3>{project.name}</h3>
+              <p>{project.summary}</p>
+              <div class="button-row"><a class="text-link" href={project.contributionHref}>My role and contributions <span class="sr-only">for {project.name}</span> <span aria-hidden="true">→</span></a><a class="text-link" href={project.appHref}>Open {project.name} <span aria-hidden="true">↗</span></a></div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
